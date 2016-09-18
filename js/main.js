@@ -11,23 +11,16 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.likeCount = [];
 
     $scope.getLike = function (id) {
-        if (localStorage.getItem(id) && localStorage.getItem(id) > 0) {
+        if (localStorage.getItem(id) == '1') {
             return "fa-thumbs-up";
         }
         return "fa-thumbs-o-up"
     };
 
-    $scope.getLikeCount = function (id) {
-        return localStorage.getItem(id) ? localStorage.getItem(id) : 0;
-    };
 
     $scope.like = function (id) {
-        if (localStorage.getItem(id)) {
-            if (localStorage.getItem(id) >= 0) {
-                localStorage.setItem(id, Number(localStorage.getItem(id)) + 1);
-            } else {
-                localStorage.setItem(id, Number(localStorage.getItem(id)) - 1);
-            }
+        if (localStorage.getItem(id) == '1') {
+            localStorage.setItem(id, 0);
         } else {
             localStorage.setItem(id, 1);
         }
@@ -63,7 +56,9 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
     $http.get('https://hackerearth.0x10.info/api/one-push?type=json&query=list_websites').then(function (res) {
         // Data from the API Request
         $scope.data = res.data;
-
+        $(document).ready(function () {
+            $('.modal-trigger').leanModal();
+        });
         //Initialize Auto Complete
         initAutoComplete();
     });

@@ -16,8 +16,21 @@ body {
 
 }
 
-.url {
+.titleContent {
+    border-bottom: 3px solid #0D47A1;
+    /*-webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);*/
+    /*-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);*/
+    /*box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);*/
+}
 
+a {
+    color: #1C39BB;
+}
+
+.url {
+    border-top: 3px solid #0D47A1;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .tag {
@@ -55,7 +68,7 @@ body {
 
 @media screen and (maX-width: 480px) {
     .card.small {
-        height: 150px;
+        height: 200px !important;
     }
 }
 
