@@ -1,14 +1,33 @@
 .mainNav {
-    background-color: #1034A6;
+    background-color: #1560BD;
+}
+
+.info {
+    position: relative;
+    left: 3%;
+    width: 10vw;
 }
 
 .searchNav {
     margin-top: 10px;
-    background-color: #0077BE;
+    background-color: cornflowerblue;
+}
+
+#autocomplete-input {
+    background-color: cornflowerblue;
+
+}
+
+.select-wrapper input.select-dropdown {
+    display: inline;
+    border-bottom: 1px solid #fff;
 }
 
 .card {
     position: relative;
+    -webkit-box-shadow: 5px 5px 10px rgba(255, 191, 00, .5);
+    -moz-box-shadow: 5px 5px 10px rgba(255, 191, 00, .5);
+    box-shadow: 5px 5px 10px rgba(255, 191, 00, .5);
 }
 
 body {
@@ -17,10 +36,8 @@ body {
 }
 
 .titleContent {
-    border-bottom: 3px solid #0D47A1;
-    /*-webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);*/
-    /*-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);*/
-    /*box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);*/
+    border-bottom: 3px solid #1C39BB;
+
 }
 
 a {
@@ -28,12 +45,14 @@ a {
 }
 
 .url {
-    border-top: 3px solid #0D47A1;
+    border-top: 3px solid #1C39BB;
     -ms-word-wrap: break-word;
     word-wrap: break-word;
+
 }
 
 .tag {
+    color: #9F566A;
     position: absolute;
     bottom: 2%;
     right: 1%;
@@ -63,12 +82,14 @@ a {
 @media screen and (max-width: 1024px) {
     .card.small {
         height: 250px;
+        font-size: calc(0.5em + 0.7vmin);
     }
 }
 
 @media screen and (maX-width: 480px) {
     .card.small {
         height: 200px !important;
+        font-size: calc(0.5em + 0.5vmin);
     }
 }
 
@@ -84,7 +105,7 @@ a {
     text-align: center;
     padding: 5px !important;
     max-height: 100% !important;
-    font-size: calc(0.5em + 0.6vmin);
+    font-size: calc(0.6em + 0.7vmin);
 }
 
 .card .right {

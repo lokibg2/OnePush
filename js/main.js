@@ -7,7 +7,7 @@ var app = angular.module('OnePush', []);
 // Controller for the main Page
 app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.data;
-    $scope.search = {query: 'asd'};
+    $scope.search = {query: '', sortField: ''};
     $scope.pushData = {};
     $('#preLoad').openModal();
 
@@ -93,11 +93,21 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
         $('#preLoad').closeModal();
         // Data from the API Request
         $scope.data = res.data;
+
         $(document).ready(function () {
             // Initialize Modal Trigger
             $('.modal-trigger').leanModal();
             // Init Tooltip
             $('.tooltipped').tooltip({delay: 50});
+            // Init Select
+            $('select').material_select();
+        });
+        $('#sortSel').change(function () {
+            var sel = $(this).val();
+            $scope.$apply(function () {
+                $scope.search.sortField = sel;
+            });
+
         });
         //Initialize Auto Complete
         initAutoComplete();
@@ -105,6 +115,8 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
         $('#preLoad').closeModal();
         Materialize.toast(err, 3000, "rounded");
     });
+
+    $scope.sortOpts = ['title', 'web_address', 'tag'];
 
     $scope.search = function (row) {
         // Filter for Searching
