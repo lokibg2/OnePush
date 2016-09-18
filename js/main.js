@@ -7,8 +7,22 @@ var app = angular.module('OnePush', []);
 // Controller for the main Page
 app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.data;
-    $scope.liked = [];
-    $scope.likeCount = [];
+    $scope.pushData = {};
+
+    $scope.checkForm = function () {
+        return !$scope.pushData.title || !$scope.pushData.url || !$scope.pushData.tag ||
+            $scope.pushData.title == '' || $scope.pushData.url == '' || $scope.pushData.tag == '';
+    };
+
+    $scope.pushData = function () {
+        $http.post('https://hackerearth.0x10.info/api/one-push?type=json&query=push&title=' + $scope.pushData.title
+            + '&url=' + $scope.pushData.url + '&tag=' + $scope.pushData.tag).then(function (res) {
+            console.log(res);
+            $scope.pushData = {};
+        }, function (err) {
+            console.log(err);
+        });
+    };
 
     $scope.getLike = function (id) {
         if (localStorage.getItem(id) == '1') {
@@ -61,6 +75,8 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
         });
         //Initialize Auto Complete
         initAutoComplete();
+    }, function (err) {
+        Materialize.toast(err, 3000, "rounded")
     });
 
     $scope.search = function (row) {

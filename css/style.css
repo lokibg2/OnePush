@@ -84,6 +84,31 @@ a {
 
 }
 
+#pushBtn {
+    background-color: #0077BE;
+}
+
 nav .right {
     padding-right: 15px;
+}
+
+/* label color */
+.input-field label {
+    color: #1C39BB;;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+    color: #1C39BB;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #1C39BB;
+    box-shadow: 0 1px 0 0 #1C39BB;
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: #1C39BB;
 }

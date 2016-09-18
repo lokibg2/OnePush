@@ -65,17 +65,33 @@
             </div>
         </div>
     </div>
+
+    <div id="pushModal" class="modal bottom-sheet">
+        <div class="modal-content">
+            <h5 class="blue-text text-darken-3">Contribute</h5>
+            <p class="grey-text">*Fill in all fields to push</p>
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input id="titleField" type="text" class="validate" ng-model="pushData.title">
+                        <label for="titleField">Title</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="urlField" type="text" class="validate" ng-model="pushData.url">
+                        <label for="urlField">URL / Web Address</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="tagField" type="text" class="validate" ng-model="pushData.tag">
+                        <label for="tagField">Tag</label>
+                    </div>
+                    <a class="btn-large col s4 push-s4 m2 push-m2" id="pushBtn" ng-disabled="checkForm()"
+                       ng-click="pushData()">Push</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
-<div id="pushModal" class="modal bottom-sheet">
-    <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-</div>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript"
