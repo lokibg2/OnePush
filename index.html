@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OnePush</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css" media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body ng-app="OnePush">
+<div class="wrapper" ng-controller="MainCtrl">
+    <nav class="mainNav">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">OnePush</a>
+            <a href="#" class="hide-on-med-and-down right">Over {{data.websites.length}} personal web portfolio and
+                counting... </a>
+        </div>
+
+    </nav>
+    <div class="container">
+        <nav class="searchNav">
+            <div class="nav-wrapper">
+                <form>
+                    <div class="input-field col s12" style="z-index: 1">
+                        <input type="search" id="autocomplete-input" class="autocomplete" ng-model="query">
+                        <label for="autocomplete-input"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col s4 m3"
+                 ng-repeat="item in data.websites | filter: search">
+
+                <div class="card small">
+
+                    <div class="card-content">
+
+                        <span class="cardTitle center-align">{{item.title}}</span> <br>
+                    </div>
+                    <div class="card-image">
+                        <img ng-src="{{item.favicon_image}}" class="responsive-img">
+                    </div>
+
+                    <div class="card-content url" style="word-wrap: break-word">
+                        <a href="{{item.url_address}}" target="_blank">{{item.url_address}}&nbsp;<i
+                                class="fa fa-external-link blue-grey-text"
+                                aria-hidden="true"></i></a>
+                        <br>
+                        <span class="left like purple-text">
+                            <i class="fa {{getLike(item.id)}} fa-2x" aria-hidden="true"></i>
+                              <a ng-click="like(item.id)"> {{getLikeCount(item.id)}}</a>
+                        </span>
+                        <span class="right tag purple-text">
+                            <i class="fa fa-tag" aria-hidden="true"></i>&nbsp;{{item.tag}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="https://use.fontawesome.com/2df2bbef4e.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
+        
