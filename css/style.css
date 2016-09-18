@@ -72,6 +72,14 @@ a {
     }
 }
 
+.preloader-wrapper {
+    margin-left: 3vw;
+}
+
+#preLoad h4 {
+    text-align: center;
+}
+
 .card-content {
     text-align: center;
     padding: 5px !important;
@@ -85,7 +93,7 @@ a {
 }
 
 #pushBtn {
-    background-color: #0077BE;
+
 }
 
 nav .right {
@@ -112,3 +120,5 @@ nav .right {
 .input-field .prefix.active {
     color: #1C39BB;
 }
+
+

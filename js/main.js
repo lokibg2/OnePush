@@ -7,24 +7,37 @@ var app = angular.module('OnePush', []);
 // Controller for the main Page
 app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.data;
+    $scope.search = {query: 'asd'};
     $scope.pushData = {};
+    $('#preLoad').openModal();
+
 
     $scope.checkForm = function () {
+        // Form Validation
         return !$scope.pushData.title || !$scope.pushData.url || !$scope.pushData.tag ||
             $scope.pushData.title == '' || $scope.pushData.url == '' || $scope.pushData.tag == '';
     };
 
     $scope.pushData = function () {
-        $http.post('https://hackerearth.0x10.info/api/one-push?type=json&query=push&title=' + $scope.pushData.title
-            + '&url=' + $scope.pushData.url + '&tag=' + $scope.pushData.tag).then(function (res) {
-            console.log(res);
-            $scope.pushData = {};
-        }, function (err) {
-            console.log(err);
-        });
+        // Push Function
+
+        $('#preLoad').openModal();
+        $http.get('https://hackerearth.0x10.info/api/one-push?type=json&query=push&title=' +
+            $scope.pushData.title + '&url=' + $scope.pushData.url + '&tag=' + $scope.pushData.tag)
+            .then(function (res) {
+                // Success Callback
+                $('#preLoad').closeModal();
+                console.log(res);
+                $scope.pushData = {};
+            }, function (err) {
+                // Error Callback
+                $('#preLoad').closeModal();
+                console.log(err);
+            });
     };
 
     $scope.getLike = function (id) {
+        // Check Liked Status and return corresponding icon
         if (localStorage.getItem(id) == '1') {
             return "fa-thumbs-up";
         }
@@ -33,6 +46,7 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
 
 
     $scope.like = function (id) {
+        // Set / Reset Like
         if (localStorage.getItem(id) == '1') {
             localStorage.setItem(id, 0);
         } else {
@@ -54,7 +68,7 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
         // Convert elements to lowercase
         dataList = _.map(dataList, function (i) {
             return i.toLowerCase();
-        })
+        });
 
         // Render elements in object format for autocomplete
         dataList = _.object(dataList, [null]);
@@ -62,28 +76,41 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
         // Autocomplete
         $(document).ready(function () {
             $('input.autocomplete').autocomplete({
-                data: dataList
+                data: dataList,
+                disabled: true
             });
+
+            $('.autocomplete-content').on('click', 'li', (function () {
+                var selectedText = $(this).text();
+                $scope.$apply(function () {
+                    $scope.search.query = selectedText;
+                });
+            }));
         })
     }
 
     $http.get('https://hackerearth.0x10.info/api/one-push?type=json&query=list_websites').then(function (res) {
+        $('#preLoad').closeModal();
         // Data from the API Request
         $scope.data = res.data;
         $(document).ready(function () {
+            // Initialize Modal Trigger
             $('.modal-trigger').leanModal();
+            // Init Tooltip
+            $('.tooltipped').tooltip({delay: 50});
         });
         //Initialize Auto Complete
         initAutoComplete();
     }, function (err) {
-        Materialize.toast(err, 3000, "rounded")
+        $('#preLoad').closeModal();
+        Materialize.toast(err, 3000, "rounded");
     });
 
     $scope.search = function (row) {
         // Filter for Searching
-        return (angular.lowercase(row.title).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
-        angular.lowercase(row.url_address).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
-        angular.lowercase(row.tag).indexOf(angular.lowercase($scope.query) || '') !== -1);
+        return (angular.lowercase(row.title).indexOf(angular.lowercase($scope.search.query) || '') !== -1 ||
+        angular.lowercase(row.url_address).indexOf(angular.lowercase($scope.search.query) || '') !== -1 ||
+        angular.lowercase(row.tag).indexOf(angular.lowercase($scope.search.query) || '') !== -1);
     };
 
 }]);

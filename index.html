@@ -13,14 +13,16 @@
     <nav class="mainNav">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo center">OnePush</a>
-            <a href="#" class="hide-on-med-and-down right">Over {{data.websites.length}} personal web portfolio and
-                counting... </a>
+            <span class="hide-on-med-and-down right">Over {{data.websites.length}} personal web portfolio and
+                counting... </span>
         </div>
 
     </nav>
+
     <div class="container">
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-            <a class="btn-floating btn-large waves-effect waves-light modal-trigger blue accent-4" href="#pushModal">
+            <a class="btn-floating btn-large waves-effect waves-light modal-trigger orange tooltipped"
+               data-position="top" data-delay="25" data-tooltip="Add Website" href="#pushModal">
                 <i class="large material-icons ">playlist_add</i>
             </a>
         </div>
@@ -28,13 +30,15 @@
             <div class="nav-wrapper">
                 <form>
                     <div class="input-field col s12" style="z-index: 1">
-                        <input type="search" id="autocomplete-input" class="autocomplete" ng-model="query">
+                        <input autocomplete="off" type="search" id="autocomplete-input" class="autocomplete"
+                               ng-model="search.query">
                         <label for="autocomplete-input"><i class="material-icons">search</i></label>
                         <i class="material-icons">close</i>
                     </div>
                 </form>
             </div>
         </nav>
+
         <div class="row">
             <div class="col s4 m3"
                  ng-repeat="item in data.websites | filter: search">
@@ -49,9 +53,9 @@
                     </div>
 
                     <div class="card-content url">
-                        <a href="{{item.url_address}}" target="_blank">{{item.url_address}}&nbsp;<i
+                        <a href="{{item.url_address}}" target="_blank"><i
                                 class="fa fa-external-link blue-grey-text"
-                                aria-hidden="true"></i></a>
+                                aria-hidden="true"></i>&nbsp;{{item.url_address}}</a>
                         <span class="left like purple-text">
 
                               <a ng-click="like(item.id)"> <i class="fa {{getLike(item.id)}} fa-2x"
@@ -84,10 +88,68 @@
                         <input id="tagField" type="text" class="validate" ng-model="pushData.tag">
                         <label for="tagField">Tag</label>
                     </div>
-                    <a class="btn-large col s4 push-s4 m2 push-m2" id="pushBtn" ng-disabled="checkForm()"
+                    <a class="btn-large col s4 push-s4 m2 push-m2 orange" id="pushBtn" ng-disabled="checkForm()"
                        ng-click="pushData()">Push</a>
                 </div>
             </form>
+        </div>
+    </div>
+    <div class="row">
+        <div id="preLoad" class="modal col s2 offset-s5">
+            <div class="modal-content">
+                <h4 class="orange-text">Loading</h4>
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+
+                    <div class="spinner-layer spinner-red">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+
+                    <div class="spinner-layer spinner-yellow">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+
+                    <div class="spinner-layer spinner-green">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
 </div>
@@ -97,7 +159,7 @@
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script src="https://use.fontawesome.com/2df2bbef4e.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/materialize.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
