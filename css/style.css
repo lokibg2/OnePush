@@ -18,6 +18,10 @@
 
 }
 
+.mainNav a {
+    font-size: 1.4em;
+}
+
 .select-wrapper input.select-dropdown {
     display: inline;
     border-bottom: 1px solid #fff;
